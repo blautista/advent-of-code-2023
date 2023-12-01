@@ -1,0 +1,19 @@
+{
+  "name": "advent-of-code-2022",
+  "version": "1.0.0",
+  "description": "my shitty solutions to this years advent of code",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "watch": "tsc --watch",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "create-day": "node internal/createDay"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/node": "^18.11.13",
+    "prettier": "^3.0.2",
+    "typescript": "^5.3.2"
+  }
+}
