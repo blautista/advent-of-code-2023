@@ -7,6 +7,19 @@ function parseInput(input: string) {
   return input.split(EOL);
 }
 
+function solve1(rows: string[]): number {
+  return rows
+    .map((row) => {
+      const onlyDigits = row.replaceAll(/[^0-9]/g, "");
+
+      const firstDigit = onlyDigits.at(0);
+      const lastDigit = onlyDigits.at(-1) ?? firstDigit;
+
+      return Number(`${firstDigit}${lastDigit}`);
+    })
+    .reduce((prev, curr) => prev + curr, 0);
+}
+
 const numberMap: Record<string, number> = {
   one: 1,
   two: 2,
@@ -63,23 +76,15 @@ function getLastDigit(str: string): number {
   throw new Error(`problem parsing ${str}`);
 }
 
-function getRowCalibrationValue(row: string): number {
-  return Number(`${getFirstDigit(row)}${getLastDigit(row)}`);
+function solve2(rows: string[]) {
+  return rows
+    .map((row) => Number(`${getFirstDigit(row)}${getLastDigit(row)}`))
+    .reduce((prev, curr) => prev + curr, 0);
 }
 
-function getCalibrationValues(rows: string[]): number[] {
-  return rows.map(getRowCalibrationValue);
-}
+const parsedInput = parseInput(rawInput);
 
-function solve1(input: string): number {
-  return getCalibrationValues(parseInput(input)).reduce((prev, curr) => prev + curr, 0);
-}
-
-function solve2(input: string) {
-  return solve1(input);
-}
-
-const firstSolution = solve1(rawInput);
-const secondSolution = solve2(rawInput);
+const firstSolution = solve1(parsedInput);
+const secondSolution = solve2(parsedInput);
 
 printSolutions(firstSolution, secondSolution);
